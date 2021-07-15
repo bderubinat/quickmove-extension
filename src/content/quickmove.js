@@ -217,9 +217,9 @@ var quickmove = (function() {
         let label = folder.prettyName;
         let lowerLabel = label.toLowerCase();
 
-        if (lowerLabel in fullPathMap) {
+        // if (lowerLabel in fullPathMap) {
           label = Quickmove.getFullName(folder);
-        }
+        // }
 
         if (lowerLabel in dupeMap && dupeMap[lowerLabel] > 1) {
           label += " - " + folder.server.prettyName;
