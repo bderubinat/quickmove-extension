@@ -78,11 +78,13 @@ var quickmove = (function() {
         maxRecentFolders: Services.prefs.getIntPref("extensions.quickmove.maxRecentFolders", 15),
         markAsRead: Services.prefs.getBoolPref("extensions.quickmove.markAsRead", true),
         excludeArchives: Services.prefs.getBoolPref("extensions.quickmove.excludeArchives", false),
+        alwaysLongNames: Services.prefs.getBoolPref("extensions.quickmove.alwaysLongNames", false),
       });
 
       Services.prefs.clearUserPref("extensions.quickmove.maxRecentFolders");
       Services.prefs.clearUserPref("extensions.quickmove.markAsRead");
       Services.prefs.clearUserPref("extensions.quickmove.excludeArchives");
+      Services.prefs.clearUserPref("extensions.quickmove.alwaysLongNames");
     },
 
     debounce: function(func, wait, immediate) {
@@ -210,6 +212,11 @@ var quickmove = (function() {
         dupeMap[lowerName]++;
       }
 
+      let alwaysLongNames = Quickmove.getPref("alwaysLongNames", false);
+      // BDR: FIXME getPerf does not return the bool value
+      // hardcoded option as work around
+      alwaysLongNames=true;
+
       // Now add each folder, appending the server name if the folder name
       // itself would appear more than once.
       for (let folder of folders) {
@@ -217,9 +224,9 @@ var quickmove = (function() {
         let label = folder.prettyName;
         let lowerLabel = label.toLowerCase();
 
-        // if (lowerLabel in fullPathMap) {
+        if (alwaysLongNames || lowerLabel in fullPathMap) {
           label = Quickmove.getFullName(folder);
-        // }
+        }
 
         if (lowerLabel in dupeMap && dupeMap[lowerLabel] > 1) {
           label += " - " + folder.server.prettyName;

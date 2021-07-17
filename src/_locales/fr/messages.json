@@ -25,5 +25,11 @@
   },
   "excludeArchives.title": {
     "message": ""
+  },
+  "alwaysLongNames": {
+    "message": "Toujours afficher les longs noms de dossiers (bug: forcé à vrai)"
+  },
+  "alwaysLongNames.title": {
+    "message": "Noms de dossiers"
   }
 }

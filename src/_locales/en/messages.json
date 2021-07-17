@@ -25,5 +25,11 @@
   },
   "excludeArchives.title": {
     "message": ""
+  },
+  "alwaysLongNames": {
+    "message": "Always display long folder names (bug: hardcoded as true)"
+  },
+  "alwaysLongNames.title": {
+    "message": "Folder names"
   }
 }

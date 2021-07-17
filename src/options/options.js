@@ -8,6 +8,7 @@
     markAsRead: true,
     maxRecentFolders: 15,
     excludeArchives: false,
+    alwaysLongNames: false,
   });
 
   for (let [name, value] of Object.entries(prefs)) {
@@ -39,6 +40,7 @@
       maxRecentFolders: parseInt(document.getElementById("maxRecentFolders").value, 10),
       markAsRead: document.getElementById("markAsRead").checked,
       excludeArchives: document.getElementById("excludeArchives").checked,
+      alwaysLongNames: document.getElementById("alwaysLongNames").checked,
     });
   });
 })();
